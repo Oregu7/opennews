@@ -1,0 +1,42 @@
+<% layout('layout/main') -%>
+<%- stylesheet('/stylesheets/blog-home.css') %>
+<div class="row">
+    <div class="col-md-2"></div>
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+        <h1 class="page-header">
+            Открытые Новости
+            <small>Secondary Text</small>
+        </h1>
+
+        <% news.forEach(function(post) { %>
+            <h2>
+                <a href="#"><%= post.title %></a>
+            </h2>
+            <p class="lead">
+                Автор: <a href="index.php"><%= post.author.name %></a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> <%= post.createdAt %></p>
+            <hr>
+            <img class="img-responsive" src= "<%= post.imageURL %>" alt="">
+            <hr>
+            <p><%= post.description.slice(0, 300) %></p>
+            <a class="btn btn-primary" href="#">Подробнее <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <hr>
+        <% }); %>
+
+        <!-- Pager -->
+        <ul class="pager">
+            <li class="previous">
+                <a href="#">&larr; Older</a>
+            </li>
+            <li class="next">
+                <a href="#">Newer &rarr;</a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- /.row -->
