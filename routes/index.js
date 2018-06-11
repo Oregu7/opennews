@@ -62,4 +62,12 @@ router.post("/post/:id", async(req, res) => {
     });
 });
 
+router.get("/about", (req, res) => {
+    return res.render("about", { title: "О нас" });
+});
+
+router.get("/contacts", (req, res) => {
+    return res.render("contacts", { title: "Контакты" });
+});
+
 module.exports = router;
