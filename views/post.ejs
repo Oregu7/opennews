@@ -1,5 +1,6 @@
 <% layout('layout/main') -%>
 <%- stylesheet('/stylesheets/blog-post.css') %>
+<%- script('/javascripts/comments.js') %>
 
 <div class="row">
     <div class="col-lg-1"></div>
@@ -42,12 +43,12 @@
         <!-- Comments Form -->
         <div class="well">
             <h4>Оставить комментарий:</h4>
-            <form role="form" method = "post">
+            <form role="form" method = "post" id="commentForm">
                 <div class="form-group">
                     <textarea class="form-control" rows="3" name = "comment"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Отправить</button>
             </form>
+            <button id = "sendCommentButton" class="btn btn-primary">Отправить</button>
         </div>
 
         <hr>

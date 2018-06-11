@@ -1,5 +1,6 @@
 <% layout('layout/main') -%>
 <%- stylesheet('/stylesheets/blog-home.css') %>
+<%- script('/javascripts/addPost.js') %>
 
 <div class="row">
     <div class="col-md-2"></div>
@@ -13,7 +14,7 @@
             <strong>Здорово!</strong> Ваша новость успешно опубликована.
         </div>
         <% } %>
-        <form class="form-horizontal" method="post">
+        <form class="form-horizontal" method="post" id = "postForm">
             <div class="form-group">
                 <label for="inputLabel1" class="col-sm-2 control-label">Тема</label>
                 <div class="col-sm-10">
@@ -59,7 +60,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Опубликовать</button>
+                    <a hrerf = "#" class="btn btn-primary" id = "sendPostButton">Опубликовать</a>
                 </div>
             </div>
         </form>

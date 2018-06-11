@@ -24,7 +24,8 @@ router.get("/page/:number", async(req, res) => {
 });
 
 router.get("/post/add", (req, res) => {
-    return res.render("addPost", { title: "Добавить пост", success: false });
+    const { success = false } = req.params;
+    return res.render("addPost", { title: "Добавить пост", success });
 });
 
 router.post("/post/add", async(req, res) => {
@@ -37,7 +38,7 @@ router.post("/post/add", async(req, res) => {
         description: text,
         imageURL: image,
     });
-    return res.render("addPost", { title: "Добавить пост", success: true });
+    return res.redirect("/post/add");
 });
 
 router.get("/post/:id", async(req, res) => {
@@ -56,10 +57,7 @@ router.post("/post/:id", async(req, res) => {
     await PostModel.update({ _id: postId }, { $push: { comments: { text: comment } } });
 
     const post = await PostModel.getPostById(postId);
-    return res.render("post", {
-        title: post.title,
-        post
-    });
+    return res.redirect(`/post/${postId}`);
 });
 
 router.get("/about", (req, res) => {
