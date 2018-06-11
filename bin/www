@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-//require("dotenv").config();
+require("dotenv").config();
 const app = require('../app');
 const mongo = require("../models/db");
 const debug = require('debug')('opennews:server');

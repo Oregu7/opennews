@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
-    ip: { type: String, required: true, unique: true },
+    ip: { type: String, required: true },
     name: { type: String, default: "Аноним" },
     createdAt: { type: Date, default: Date.now },
 });

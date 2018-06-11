@@ -1,5 +1,6 @@
 <% layout('layout/main') -%>
 <%- stylesheet('/stylesheets/blog-home.css') %>
+
 <div class="row">
     <div class="col-md-2"></div>
     <!-- Blog Entries Column -->
@@ -7,15 +8,14 @@
 
         <h1 class="page-header">
             Открытые Новости
-            <small>Secondary Text</small>
         </h1>
 
-        <% news.forEach(function(post) { %>
+        <% news.docs.forEach(function(post) { %>
             <h2>
                 <a href="/post/<%= post._id %>"><%= post.title %></a>
             </h2>
             <p class="lead">
-                Автор: <a href="index.php"><%= post.author.name %></a>
+                Автор: <a href="#"><%= post.author.name %></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> <%= post.createdAt %></p>
             <hr>
@@ -29,10 +29,10 @@
         <!-- Pager -->
         <ul class="pager">
             <li class="previous">
-                <a href="#">&larr; Older</a>
+                <a href="/page/<%= pager.previous %>">&larr; Предыдущие</a>
             </li>
             <li class="next">
-                <a href="#">Newer &rarr;</a>
+                <a href="/page/<%= pager.next %>">Следующие &rarr;</a>
             </li>
         </ul>
 

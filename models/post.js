@@ -21,14 +21,17 @@ const PostSchema = Schema({
 
 PostSchema.plugin(mongoosePaginate);
 
-PostSchema.statics.getNews = async function() {
-    let news = await this
-        .find({})
-        .select("-comments -views")
-        .sort("-createdAt")
-        .populate("author");
+PostSchema.statics.getNews = async function(page, limit = 3) {
+    let news = await this.paginate({}, {
+        select: "-comments -views",
+        sort: "-createdAt",
+        populate: "author",
+        limit,
+        page,
+    });
 
-    return news.map(normalizeDate);
+    news.docs = news.docs.map((post) => normalizeDate(post.toObject()));
+    return news;
 }
 
 PostSchema.statics.getPostById = async function(id) {
@@ -36,13 +39,15 @@ PostSchema.statics.getPostById = async function(id) {
         .findById(id)
         .populate("author");
 
-    return normalizeDate(post);
+    post = normalizeDate(post.toObject());
+    post.comments = post.comments.map(normalizeDate);
+    return post;
 }
 
-function normalizeDate(post) {
-    let { createdAt } = post;
+function normalizeDate(data) {
+    let { createdAt } = data;
     createdAt = moment(createdAt).format('LLL');
-    return Object.assign({}, post.toObject(), { createdAt });
+    return Object.assign({}, data, { createdAt });
 }
 
 module.exports = mongoose.model("Post", PostSchema);
