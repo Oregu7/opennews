@@ -21,7 +21,7 @@ const PostSchema = Schema({
 
 PostSchema.plugin(mongoosePaginate);
 
-PostSchema.statics.getNews = async function(page, limit = 3) {
+PostSchema.statics.getNews = async function(page, limit = 5) {
     let news = await this.paginate({}, {
         select: "-comments -views",
         sort: "-createdAt",
