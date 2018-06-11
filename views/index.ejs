@@ -12,7 +12,7 @@
 
         <% news.forEach(function(post) { %>
             <h2>
-                <a href="#"><%= post.title %></a>
+                <a href="/post/<%= post._id %>"><%= post.title %></a>
             </h2>
             <p class="lead">
                 Автор: <a href="index.php"><%= post.author.name %></a>
@@ -22,7 +22,7 @@
             <img class="img-responsive" src= "<%= post.imageURL %>" alt="">
             <hr>
             <p><%= post.description.slice(0, 300) %></p>
-            <a class="btn btn-primary" href="#">Подробнее <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="btn btn-primary" href="/post/<%= post._id %>">Подробнее <span class="glyphicon glyphicon-chevron-right"></span></a>
             <hr>
         <% }); %>
 

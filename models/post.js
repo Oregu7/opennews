@@ -28,11 +28,21 @@ PostSchema.statics.getNews = async function() {
         .sort("-createdAt")
         .populate("author");
 
-    return news.map((post) => {
-        let { createdAt } = post;
-        createdAt = moment(createdAt).format('LLL');
-        return Object.assign({}, post.toObject(), { createdAt });
-    });
+    return news.map(normalizeDate);
+}
+
+PostSchema.statics.getPostById = async function(id) {
+    let post = await this
+        .findById(id)
+        .populate("author");
+
+    return normalizeDate(post);
+}
+
+function normalizeDate(post) {
+    let { createdAt } = post;
+    createdAt = moment(createdAt).format('LLL');
+    return Object.assign({}, post.toObject(), { createdAt });
 }
 
 module.exports = mongoose.model("Post", PostSchema);

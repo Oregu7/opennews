@@ -5,11 +5,13 @@ const router = Router();
 /* GET home page. */
 router.get('/', async(req, res, next) => {
     const news = await PostModel.getNews();
-    res.render('index', { news });
+    return res.render('index', { news });
 });
 
-router.get("/post", (req, res) => {
-    return res.render('post');
+router.get("/post/:id", async(req, res) => {
+    const { id: postId } = req.params;
+    const post = await PostModel.getPostById(postId);
+    return res.render("post", { post });
 });
 
 router.get("/cr_author", async(req, res) => {
