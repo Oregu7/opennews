@@ -5,11 +5,9 @@
     <div class="col-md-2"></div>
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-
         <h1 class="page-header">
             Открытые Новости
         </h1>
-
         <% news.docs.forEach(function(post) { %>
             <h2>
                 <a href="/post/<%= post._id %>"><%= post.title %></a>
@@ -25,7 +23,6 @@
             <a class="btn btn-primary" href="/post/<%= post._id %>">Подробнее <span class="glyphicon glyphicon-chevron-right"></span></a>
             <hr>
         <% }); %>
-
         <!-- Pager -->
         <ul class="pager">
             <li class="previous">
@@ -39,4 +36,3 @@
     </div>
     <div class="col-md-2"></div>
 </div>
-<!-- /.row -->

@@ -3,7 +3,6 @@ const { UserModel, PostModel } = require("../models");
 const { paginator } = require("../helpers");
 const router = Router();
 
-/* GET home page. */
 router.get('/', async(req, res, next) => {
     const news = await PostModel.getNews(1);
     return res.render('index', {
@@ -56,7 +55,6 @@ router.post("/post/:id", async(req, res) => {
     const { comment } = req.body;
     await PostModel.update({ _id: postId }, { $push: { comments: { text: comment } } });
 
-    const post = await PostModel.getPostById(postId);
     return res.redirect(`/post/${postId}`);
 });
 
